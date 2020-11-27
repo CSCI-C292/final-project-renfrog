@@ -8,18 +8,22 @@ public class StatusBar : MonoBehaviour
 
     float currentScore = 1.0f;
     [SerializeField] Image healthBar;
+    [SerializeField] GameObject deathPanel;
     int down = 0;
     bool duringDay = true;
     // Start is called before the first frame update
     void Start()
     {
+        deathPanel.SetActive(false);
         InvokeRepeating("DecreaseScore", 0.1f, 10.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentScore <= 0){
+            InitiateDeath();
+        }
     }
 
     public void IncreaseStatus(float amount )
@@ -40,6 +44,10 @@ public class StatusBar : MonoBehaviour
     public void SetHealth(float amount)
     {
         healthBar.fillAmount = amount;
+    }
+
+    private void InitiateDeath(){
+        deathPanel.SetActive(true);
     }
 
 }

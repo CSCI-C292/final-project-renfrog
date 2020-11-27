@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryButton : MonoBehaviour
 {
@@ -29,4 +30,7 @@ public class InventoryButton : MonoBehaviour
             _shown = true;
         }
     }
+
+    //found how to change button images here: https://forum.unity.com/threads/change-ui-button-source-image-in-code.271034/
+
 }
