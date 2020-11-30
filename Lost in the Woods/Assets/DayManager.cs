@@ -8,6 +8,7 @@ public class DayManager : MonoBehaviour
     [SerializeField] GameObject eveningPanel;
     [SerializeField] GameObject nightPanel;
     [SerializeField] GameObject currentTimeText;
+    [SerializeField] GameObject survivalText;
     [SerializeField] GameObject day1;
     [SerializeField] GameObject day2;
     [SerializeField] GameObject day3;
@@ -24,6 +25,7 @@ public class DayManager : MonoBehaviour
     private Dictionary<int, GameObject> gameDays = new Dictionary<int, GameObject>();
     bool dead = false;
     int currentDay = 1;
+    bool _isGameOver = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +42,6 @@ public class DayManager : MonoBehaviour
     }
 
     void ChangeText() {
-        Debug.Log(inGameInt);
         currentTimeText.GetComponent<Text>().text = "" + timeTexts[inGameInt];
     }
 
@@ -66,6 +67,10 @@ public class DayManager : MonoBehaviour
         if(dead){
             currentTimeText.SetActive(false);
         }
+        if(nighttime && currentDay == 5){
+            _isGameOver = true;
+            GameEnd();
+        }
         if(nighttime) {
             if(currentWait == 65){
                 inGameTime = 0;
@@ -80,8 +85,7 @@ public class DayManager : MonoBehaviour
                 gameDays[currentDay-1].SetActive(false);
             }
             currentWait++;
-        }
-        
+        }  
         
     }
 
@@ -106,5 +110,19 @@ public class DayManager : MonoBehaviour
 
     public void TurnDead(){
         dead = true;
+    }
+
+    public void GameEnd(){
+        survivalText.SetActive(true);
+        if (Input.GetButtonDown("Fire2") && _isGameOver) {
+            timeLeft = 50.0f;
+            currentWait = 1;
+            nighttime = false;
+            inGameTime = 0f;
+            inGameInt = 8;
+            dead = false;
+            currentDay = 1;
+            _isGameOver = false;
+        }
     }
 }
