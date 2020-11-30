@@ -8,6 +8,9 @@ public class RuntimeData : MonoBehaviour
     [SerializeField] StatusBar hungerBar;
     [SerializeField] StatusBar warmthBar;
     [SerializeField] InventoryControl inventory;
+    [SerializeField] DayManager dayManage;
+
+    public bool dead = false;
     public int days;
     // Start is called before the first frame update
     void Start()
@@ -29,6 +32,10 @@ public class RuntimeData : MonoBehaviour
     public void IncreaseWarmth(int amount){
         float floatedAmount = (float) amount / (float) 100;
         warmthBar.IncreaseStatus(floatedAmount);
+    }
+
+    public void FlipDead(){
+        dayManage.TurnDead();
     }
 
 /*

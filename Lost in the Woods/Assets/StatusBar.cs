@@ -9,6 +9,7 @@ public class StatusBar : MonoBehaviour
     float currentScore = 1.0f;
     [SerializeField] Image healthBar;
     [SerializeField] GameObject deathPanel;
+    [SerializeField] RuntimeData runtimeData;
     int down = 0;
     bool duringDay = true;
     // Start is called before the first frame update
@@ -48,6 +49,7 @@ public class StatusBar : MonoBehaviour
 
     private void InitiateDeath(){
         deathPanel.SetActive(true);
+        runtimeData.FlipDead();
     }
 
 }

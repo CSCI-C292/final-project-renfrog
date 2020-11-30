@@ -22,6 +22,8 @@ public class Item : MonoBehaviour
     }
 
     private void OnMouseDown() {
+        Debug.Log("no");
+        //item.SetActive(false);
         Destroy(item);
         runtimeData.IncreaseHunger(hungerScore);
         runtimeData.IncreaseWarmth(warmthScore);
