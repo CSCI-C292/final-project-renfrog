@@ -11,7 +11,7 @@ public class Trees : MonoBehaviour
 
     string displayText;
 
-    int _woodScore = 10;
+    int _woodScore = 20;
     float currentSecond = 7f;
     int currentInt = 6;
     bool inTrees = false;

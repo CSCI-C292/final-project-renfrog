@@ -14,6 +14,7 @@ public class DayManager : MonoBehaviour
     [SerializeField] GameObject day3;
     [SerializeField] GameObject day4;
     [SerializeField] GameObject day5;
+    [SerializeField] GameObject day6;
 
     float timeLeft = 50.0f;
     float currentTransperancy = 1f;
@@ -106,6 +107,7 @@ public class DayManager : MonoBehaviour
         gameDays.Add(3, day3);
         gameDays.Add(4, day4);
         gameDays.Add(5, day5);
+        gameDays.Add(6, day6);
     }
 
     public void TurnDead(){
@@ -114,6 +116,7 @@ public class DayManager : MonoBehaviour
 
     public void GameEnd(){
         survivalText.SetActive(true);
+        
         if (Input.GetButtonDown("Fire2") && _isGameOver) {
             timeLeft = 50.0f;
             currentWait = 1;

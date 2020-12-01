@@ -9,6 +9,7 @@ public class Item : MonoBehaviour
     [SerializeField] int warmthScore;
     [SerializeField] GameObject item;
     [SerializeField] RuntimeData runtimeData;
+    [SerializeField] InventoryControl ic;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +23,9 @@ public class Item : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        Debug.Log("no");
-        //item.SetActive(false);
-        Destroy(item);
+        Debug.Log(item + "");
+        item.SetActive(false);
+        ic.AddedItem(item + "");
         runtimeData.IncreaseHunger(hungerScore);
         runtimeData.IncreaseWarmth(warmthScore);
     }

@@ -19,10 +19,12 @@ public class InventoryControl : MonoBehaviour
     {
         
     }
-    /*
-    public void AddedItem(Item newItem){
-        Button current = itemSlots.get(currentSlot);
-        current.ItemIn(newItem);
+    
+    public void AddedItem(string name){
+        Button current = itemSlots[currentSlot];
+        string onlyName = name.Substring(0, name.IndexOf(" "));
+        current.GetComponentInChildren<Text>().text = "" + onlyName;
+        currentSlot++;
     }
-    */
+    
 }
