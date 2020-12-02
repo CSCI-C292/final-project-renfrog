@@ -10,6 +10,8 @@ public class Item : MonoBehaviour
     [SerializeField] GameObject item;
     [SerializeField] RuntimeData runtimeData;
     [SerializeField] InventoryControl ic;
+    [SerializeField] bool isTree;
+    string name;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +24,24 @@ public class Item : MonoBehaviour
         
     }
 
-    private void OnMouseDown() {
-        Debug.Log(item + "");
-        item.SetActive(false);
-        ic.AddedItem(item + "");
-        runtimeData.IncreaseHunger(hungerScore);
-        runtimeData.IncreaseWarmth(warmthScore);
+    public void OnMouseDown() {
+        string objectName = item + "";
+        name = objectName.Substring(0, objectName.IndexOf(" "));
+        if(!isTree){
+            item.SetActive(false);
+        }
+        ic.AddedItem(this);
+    }
+
+    public int GetHungerScore(){
+        return hungerScore;
+    }
+
+    public int GetWarmthScore(){
+        return warmthScore;
+    }
+
+    public string GetName(){
+        return name;
     }
 }

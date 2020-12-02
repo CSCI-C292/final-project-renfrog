@@ -8,6 +8,7 @@ public class Trees : MonoBehaviour
     [SerializeField] GameObject treeCollideText;
     [SerializeField] RuntimeData runtimeData;
     [SerializeField] GameObject waitPanel;
+    [SerializeField] Item ic;
 
     string displayText;
 
@@ -24,7 +25,7 @@ public class Trees : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0) && inTrees){
+        if (Input.GetKey("space") && inTrees){
             waitPanel.SetActive(true);
             choppingProgress = true;
             currentSecond -= Time.deltaTime;
@@ -33,8 +34,9 @@ public class Trees : MonoBehaviour
                 currentInt--;
             }
             if(currentInt <= 0){
-                runtimeData.IncreaseWarmth(_woodScore);
+                //runtimeData.IncreaseWarmth(_woodScore);
                 waitPanel.SetActive(false);
+                ic.OnMouseDown();
                 currentSecond = 7f;
                 currentInt = 6;
             }

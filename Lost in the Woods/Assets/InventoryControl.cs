@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class InventoryControl : MonoBehaviour
 {
     [SerializeField] List<Button> itemSlots;
-
+    [SerializeField] RuntimeData runtimeData;
+    
+    List<Item> itemsList = new List<Item>();
     private int currentSlot = 0;
     // Start is called before the first frame update
     void Start()
@@ -20,11 +22,22 @@ public class InventoryControl : MonoBehaviour
         
     }
     
-    public void AddedItem(string name){
+    public void AddedItem(Item item){
         Button current = itemSlots[currentSlot];
-        string onlyName = name.Substring(0, name.IndexOf(" "));
-        current.GetComponentInChildren<Text>().text = "" + onlyName;
+        current.GetComponentInChildren<Text>().text = "" + item.GetName();
+        itemsList.Add(item);
         currentSlot++;
+
     }
+    
+    //found out how to convert string to int here: https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/how-to-convert-a-string-to-a-number
+    public void WhenInventoryClicked(int buttonNumber){
+        Item item = itemsList[buttonNumber-1];
+        Button current = itemSlots[buttonNumber-1];
+        current.GetComponentInChildren<Text>().text = "";
+        runtimeData.IncreaseHunger(item.GetHungerScore());
+        runtimeData.IncreaseWarmth(item.GetWarmthScore());
+    }
+    
     
 }
