@@ -32,11 +32,31 @@ public class InventoryControl : MonoBehaviour
     
     //found out how to convert string to int here: https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/how-to-convert-a-string-to-a-number
     public void WhenInventoryClicked(int buttonNumber){
-        Item item = itemsList[buttonNumber-1];
-        Button current = itemSlots[buttonNumber-1];
-        current.GetComponentInChildren<Text>().text = "";
-        runtimeData.IncreaseHunger(item.GetHungerScore());
-        runtimeData.IncreaseWarmth(item.GetWarmthScore());
+        try{
+            Item item = itemsList[buttonNumber-1];
+            Button current = itemSlots[buttonNumber-1];
+            current.GetComponentInChildren<Text>().text = "";
+            runtimeData.IncreaseHunger(item.GetHungerScore());
+            runtimeData.IncreaseWarmth(item.GetWarmthScore());
+            itemsList.RemoveAt(buttonNumber-1);
+            reOrder();
+        } catch(System.Exception e){
+            Debug.Log("nice");
+        }
+    }
+
+    public void reOrder() {
+        int j = 0;
+        foreach (Item i in itemsList){
+            Button current = itemSlots[j];
+            current.GetComponentInChildren<Text>().text = i.GetName();
+            j++;
+        }
+        currentSlot = itemsList.Count;
+        for(int i = currentSlot; i < itemSlots.Count; i++){
+            Button current = itemSlots[j];
+            current.GetComponentInChildren<Text>().text = "";
+        }
     }
     
     

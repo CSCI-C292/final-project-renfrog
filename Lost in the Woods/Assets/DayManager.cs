@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DayManager : MonoBehaviour
 {
@@ -53,11 +54,11 @@ public class DayManager : MonoBehaviour
             if (timeLeft < 0)
             {
                 timeLeft = 40.0f;
-                nightPanel.SetActive(true);
+                //nightPanel.SetActive(true);
                 nighttime = true;
             }
             else if (timeLeft < 10){
-                eveningPanel.SetActive(true);
+                //eveningPanel.SetActive(true);
             }
             if(inGameTime >= 5){
                 inGameInt++;
@@ -79,8 +80,8 @@ public class DayManager : MonoBehaviour
                 ChangeText();
                 nighttime = false;
                 currentWait = 0;
-                nightPanel.SetActive(false);
-                eveningPanel.SetActive(false);
+                //nightPanel.SetActive(false);
+                //eveningPanel.SetActive(false);
                 currentDay++;
                 gameDays[currentDay].SetActive(true);
                 gameDays[currentDay-1].SetActive(false);
@@ -117,15 +118,5 @@ public class DayManager : MonoBehaviour
     public void GameEnd(){
         survivalText.SetActive(true);
         
-        if (Input.GetButtonDown("Fire2") && _isGameOver) {
-            timeLeft = 50.0f;
-            currentWait = 1;
-            nighttime = false;
-            inGameTime = 0f;
-            inGameInt = 8;
-            dead = false;
-            currentDay = 1;
-            _isGameOver = false;
-        }
     }
 }
