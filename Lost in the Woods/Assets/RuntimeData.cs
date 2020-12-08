@@ -10,6 +10,8 @@ public class RuntimeData : MonoBehaviour
     [SerializeField] InventoryControl inventory;
     [SerializeField] DayManager dayManage;
 
+    public BusyEnum currentState;
+
     public bool dead = false;
     public int days;
     // Start is called before the first frame update

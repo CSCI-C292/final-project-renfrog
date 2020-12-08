@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] float _moveSpeed = 3f;
+    [SerializeField] RuntimeData runtime;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +15,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        if(runtime.currentState == BusyEnum.NotBusy){
+            Movement();
+        }
     }
 
     void Movement() 

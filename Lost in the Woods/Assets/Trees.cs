@@ -20,12 +20,14 @@ public class Trees : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        runtimeData.currentState = BusyEnum.NotBusy;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey("space") && inTrees){
+            runtimeData.currentState = BusyEnum.Busy;
             waitPanel.SetActive(true);
             choppingProgress = true;
             currentSecond -= Time.deltaTime;
@@ -42,9 +44,13 @@ public class Trees : MonoBehaviour
             }
         } 
         else if (currentSecond != 7f && inTrees){
+            runtimeData.currentState = BusyEnum.Busy;
             waitPanel.SetActive(false);
             currentSecond = 7f;
             currentInt = 6;
+        }
+        else{
+            runtimeData.currentState = BusyEnum.NotBusy;
         }
     } 
         
