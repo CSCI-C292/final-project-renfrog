@@ -4,5 +4,5 @@ using UnityEngine;
 
 public enum BusyEnum 
 {
-    Busy, NotBusy
+    Busy, NotBusy, Night
 }

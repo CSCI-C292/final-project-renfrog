@@ -40,9 +40,7 @@ public class InventoryControl : MonoBehaviour
             runtimeData.IncreaseWarmth(item.GetWarmthScore());
             itemsList.RemoveAt(buttonNumber-1);
             reOrder();
-        } catch(System.Exception e){
-            Debug.Log("nice");
-        }
+        } catch(System.Exception e){   }
     }
 
     public void reOrder() {

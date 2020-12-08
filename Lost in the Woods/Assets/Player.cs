@@ -26,4 +26,8 @@ public class Player : MonoBehaviour
 
         GetComponent<CharacterController>().Move(sidewaysMovement * _moveSpeed * Time.deltaTime);
     }
+
+    public void TravelHome(){
+        transform.position = new Vector3(42.29f,-1.240f,-18.93f);
+    }
 }

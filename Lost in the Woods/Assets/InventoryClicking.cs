@@ -19,7 +19,6 @@ public class InventoryClicking : MonoBehaviour
     }
 
     public void WhenClicked(string name){
-        Debug.Log(name);
         int buttonNumber = Int32.Parse(name);
         ic.WhenInventoryClicked(buttonNumber);
     }

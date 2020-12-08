@@ -36,7 +36,7 @@ public class Trees : MonoBehaviour
                 currentInt--;
             }
             if(currentInt <= 0){
-                //runtimeData.IncreaseWarmth(_woodScore);
+                runtimeData.currentState = BusyEnum.NotBusy;
                 waitPanel.SetActive(false);
                 ic.OnMouseDown();
                 currentSecond = 7f;
@@ -59,7 +59,9 @@ public class Trees : MonoBehaviour
     void OnTriggerStay(Collider other)
     {
         inTrees = true;
-        treeCollideText.SetActive(true);
+        if(runtimeData.currentState == BusyEnum.NotBusy){
+            treeCollideText.SetActive(true);
+        }
     }
 
     void OnTriggerExit(Collider other)

@@ -16,6 +16,10 @@ public class DayManager : MonoBehaviour
     [SerializeField] GameObject day4;
     [SerializeField] GameObject day5;
     [SerializeField] GameObject day6;
+    [SerializeField] RuntimeData runtime;
+
+    public SceneFade sf;
+    public Player player;
 
     float timeLeft = 50.0f;
     float currentTransperancy = 1f;
@@ -54,11 +58,12 @@ public class DayManager : MonoBehaviour
             if (timeLeft < 0)
             {
                 timeLeft = 40.0f;
-                //nightPanel.SetActive(true);
                 nighttime = true;
+                runtime.currentState = BusyEnum.Night;
             }
-            else if (timeLeft < 10){
-                //eveningPanel.SetActive(true);
+            else if (timeLeft < 4){
+                sf.BeginNight();
+                runtime.currentState = BusyEnum.Busy;
             }
             if(inGameTime >= 5){
                 inGameInt++;
@@ -74,18 +79,16 @@ public class DayManager : MonoBehaviour
             GameEnd();
         }
         if(nighttime) {
-            if(currentWait == 65){
-                inGameTime = 0;
-                inGameInt = 8;
-                ChangeText();
-                nighttime = false;
-                currentWait = 0;
-                //nightPanel.SetActive(false);
-                //eveningPanel.SetActive(false);
-                currentDay++;
-                gameDays[currentDay].SetActive(true);
-                gameDays[currentDay-1].SetActive(false);
-            }
+            player.TravelHome();
+            sf.StartDay();
+            inGameTime = 0;
+            inGameInt = 8;
+            ChangeText();
+            nighttime = false;
+            currentWait = 0;
+            currentDay++;
+            gameDays[currentDay].SetActive(true);
+            gameDays[currentDay-1].SetActive(false);
             currentWait++;
         }  
         
@@ -117,6 +120,5 @@ public class DayManager : MonoBehaviour
 
     public void GameEnd(){
         survivalText.SetActive(true);
-        
     }
 }
